@@ -1,0 +1,33 @@
+cat > index.html << 'EOF'
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BR → MLB game_pk</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+  h1 { font-size: 1.25rem; margin: 0 0 1rem; }
+  form { display: flex; gap: .5rem; }
+  input { flex: 1; padding: .5rem .6rem; font: inherit; font-family: ui-monospace, monospace; }
+  button { padding: .5rem 1rem; font: inherit; cursor: pointer; }
+  #out { margin-top: 1.25rem; padding: .75rem 1rem; border-radius: 6px; background: #8881; min-height: 2.5em; }
+  #out.err { background: #c0392b22; }
+  code { font-family: ui-monospace, monospace; }
+  .pk { font-size: 1.4rem; font-weight: 600; }
+  .meta { opacity: .75; font-size: .9rem; margin-top: .35rem; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+  <h1>Baseball Reference → MLB <code>game_pk</code></h1>
+  <form id="f">
+    <input id="brid" placeholder="e.g. MIN200910060" autocomplete="off" autofocus required>
+    <button type="submit">Look up</button>
+  </form>
+  <div id="out">Enter a Baseball Reference game ID.</div>
+  <script src="app.js"></script>
+</body>
+</html>
+EOF
