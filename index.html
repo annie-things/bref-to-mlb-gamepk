@@ -6,26 +6,52 @@
 <title>BR → MLB game_pk</title>
 <style>
   :root { color-scheme: light dark; }
-  body { font: 16px/1.5 system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
   h1 { font-size: 1.25rem; margin: 0 0 1rem; }
+  .tabs { display: flex; gap: .25rem; margin-bottom: 1rem; border-bottom: 1px solid #8884; }
+  .tab { padding: .5rem 1rem; background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font: inherit; color: inherit; opacity: .6; }
+  .tab.active { border-bottom-color: currentColor; opacity: 1; }
   form { display: flex; gap: .5rem; }
   input { flex: 1; padding: .5rem .6rem; font: inherit; font-family: ui-monospace, monospace; }
-  button { padding: .5rem 1rem; font: inherit; cursor: pointer; }
+  button[type="submit"] { padding: .5rem 1rem; font: inherit; cursor: pointer; }
   #out { margin-top: 1.25rem; padding: .75rem 1rem; border-radius: 6px; background: #8881; min-height: 2.5em; }
   #out.err { background: #c0392b22; }
   code { font-family: ui-monospace, monospace; }
   .pk { font-size: 1.4rem; font-weight: 600; }
   .meta { opacity: .75; font-size: .9rem; margin-top: .35rem; }
   a { color: inherit; }
+  table { width: 100%; border-collapse: collapse; margin-top: .25rem; }
+  th, td { padding: .4rem .5rem; text-align: left; border-bottom: 1px solid #8883; font-size: .92rem; }
+  th { font-weight: 600; opacity: .8; }
+  td.pkcell { font-family: ui-monospace, monospace; font-weight: 600; }
+  td.tag { font-size: .8rem; opacity: .7; }
+  .panel { display: none; }
+  .panel.active { display: block; }
 </style>
 </head>
 <body>
-  <h1>Baseball Reference → MLB <code>game_pk</code></h1>
-  <form id="f">
-    <input id="brid" placeholder="e.g. MIN200910060" autocomplete="off" autofocus required>
-    <button type="submit">Look up</button>
-  </form>
-  <div id="out">Enter a Baseball Reference game ID.</div>
+  <h1>MLB <code>game_pk</code> lookup</h1>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="brid">By Baseball Reference ID</button>
+    <button class="tab" data-panel="date">By date</button>
+  </div>
+
+  <div id="panel-brid" class="panel active">
+    <form id="f-brid">
+      <input id="brid" placeholder="e.g. MIN200910060" autocomplete="off" required>
+      <button type="submit">Look up</button>
+    </form>
+  </div>
+
+  <div id="panel-date" class="panel">
+    <form id="f-date">
+      <input id="date" type="date" required>
+      <button type="submit">List games</button>
+    </form>
+  </div>
+
+  <div id="out">Pick a mode and submit.</div>
   <script src="app.js"></script>
 </body>
 </html>
